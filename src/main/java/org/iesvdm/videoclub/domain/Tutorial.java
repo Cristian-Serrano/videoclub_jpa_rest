@@ -35,6 +35,6 @@ public class Tutorial {
     @Column(nullable = true)
     private Date fechaPublicacion;
 
-    @OneToMany
+    @OneToMany( mappedBy = "tutorial")// por defecto fetch es lazy
     private List<Comentario> comentarios;
 }
