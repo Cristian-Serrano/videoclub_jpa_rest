@@ -49,7 +49,11 @@ class VideoclubApplicationTests {
                 .texto("Comentario2")
                 .build();
 
-        tutorial.addComentario(comentario1).addComentario(comentario2);
+        tutorial.addComentario(comentario1);
+
+        tutorialRepository.save(tutorial);
+
+        tutorial.addComentario(comentario2);
 
         tutorialRepository.save(tutorial);
     }
@@ -57,7 +61,7 @@ class VideoclubApplicationTests {
     @Test
     @Transactional
     public void pruebaEliminarComentario(){
-        Optional<Tutorial> optionalTutorial = this.tutorialRepository.findById(1l);
+        Optional<Tutorial> optionalTutorial = this.tutorialRepository.findById(1L);
 
         optionalTutorial.ifPresent(tutorial -> {
             tutorial
@@ -70,6 +74,11 @@ class VideoclubApplicationTests {
 
             this.tutorialRepository.save(tutorial);
         });
+
+        //this.tutorialRepository.delete(optionalTutorial.get());
+
+        tutorialRepository.flush();
     }
+
 
 }
