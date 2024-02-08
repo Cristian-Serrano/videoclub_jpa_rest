@@ -8,6 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Optional;
+
 @SpringBootTest
 class VideoclubApplicationTests {
 
@@ -32,6 +37,8 @@ class VideoclubApplicationTests {
                 .titulo("titulo del tutorial")
                 .publicado(true)
                 .descripcion("descripcion del tutorial")
+                .fechaPublicacion(new Date())
+                .comentarios(new HashSet<>())
                 .build();
 
         Comentario comentario1 = Comentario.builder()
@@ -45,6 +52,24 @@ class VideoclubApplicationTests {
         tutorial.addComentario(comentario1).addComentario(comentario2);
 
         tutorialRepository.save(tutorial);
+    }
+
+    @Test
+    @Transactional
+    public void pruebaEliminarComentario(){
+        Optional<Tutorial> optionalTutorial = this.tutorialRepository.findById(1l);
+
+        optionalTutorial.ifPresent(tutorial -> {
+            tutorial
+                    .getComentarios()
+                    .forEach(System.out::println);
+
+            var optionalComentario = tutorial.getComentarios().stream().findFirst();
+
+            tutorial.removeComentario(optionalComentario.get());
+
+            this.tutorialRepository.save(tutorial);
+        });
     }
 
 }

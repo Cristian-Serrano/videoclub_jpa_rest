@@ -1,14 +1,12 @@
 package org.iesvdm.videoclub.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -20,10 +18,12 @@ import java.util.List;
         schema = "videoclub_jpa",
         indexes = {@Index(name = "index_titulo", columnList = "titulo", unique = false)}
 )
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Tutorial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private long id;
 
     @Column(name = "titulo", length = 50)
@@ -38,8 +38,8 @@ public class Tutorial {
     @Column(nullable = true)
     private Date fechaPublicacion;
 
-    @OneToMany( mappedBy = "tutorial")// por defecto fetch es lazy
-    private List<Comentario> comentarios = new ArrayList<>();
+    @OneToMany( mappedBy = "tutorial", cascade = CascadeType.ALL)// por defecto fetch es lazy
+    private Set<Comentario> comentarios;
 
     /**
      * helper
