@@ -25,6 +25,11 @@ public class PeliculaController {
         return this.peliculaService.all();
     }
 
+    /**
+     * requestbody coje el objeto json y lo convierte en objeto java.
+     * @param pelicula
+     * @return
+     */
     @PostMapping({"","/"})
     public Pelicula newPelicula(@RequestBody Pelicula pelicula) {
         return this.peliculaService.save(pelicula);
