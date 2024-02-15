@@ -1,9 +1,12 @@
 package org.iesvdm.videoclub;
 
 import jakarta.transaction.Transactional;
+import org.iesvdm.videoclub.domain.Categoria;
 import org.iesvdm.videoclub.domain.Comentario;
 import org.iesvdm.videoclub.domain.Tutorial;
+import org.iesvdm.videoclub.repository.CategoriaRepository;
 import org.iesvdm.videoclub.repository.TutorialRepository;
+import org.iesvdm.videoclub.service.CategoriaService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +18,9 @@ import java.util.Optional;
 
 @SpringBootTest
 class VideoclubApplicationTests {
+
+    @Autowired
+    CategoriaService categoriaService;
 
     @Autowired
     TutorialRepository tutorialRepository;
@@ -78,5 +84,14 @@ class VideoclubApplicationTests {
         //this.tutorialRepository.delete(optionalTutorial.get());
 
         tutorialRepository.flush();
+    }
+
+    @Test
+    public void crearCategoria(){
+        Categoria categoria1 = new Categoria(1,"categoria1",new HashSet<>(),new Date());
+        categoriaService.save(categoria1);
+
+        Categoria categoria2 = new Categoria(2,"categoria2",new HashSet<>(),new Date());
+        categoriaService.save(categoria2);
     }
 }
