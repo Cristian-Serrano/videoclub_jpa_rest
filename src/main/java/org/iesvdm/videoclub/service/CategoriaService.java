@@ -19,7 +19,7 @@ public class CategoriaService {
                 .orElseThrow(() -> new PeliculaNotFoundException(id));
     }
 
-    public List<Categoria> all(){
+    public List<Categoria> all(Optiona){
         return this.categoriaRepository.findAll();
     }
 

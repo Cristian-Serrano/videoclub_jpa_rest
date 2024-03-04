@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -26,6 +27,12 @@ public class CategoriaController {
     public List<Categoria> all() {
         log.info("Accediendo a todas las categorias");
         return this.categoriaService.all();
+    }
+
+    @GetMapping({"","/"})
+    public List<Categoria> all(@RequestParam("buscar") Optional<String> buscar,@RequestParam("ordenar") Optional<String> ordenar) {
+        log.info("Accediendo a todas las categorias");
+        return this.categoriaService.all(buscar, ordenar);
     }
 
     /**
