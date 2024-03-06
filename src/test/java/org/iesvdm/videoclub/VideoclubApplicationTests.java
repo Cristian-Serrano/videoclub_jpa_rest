@@ -88,10 +88,10 @@ class VideoclubApplicationTests {
 
     @Test
     public void crearCategoria(){
-        Categoria categoria1 = new Categoria(1,"categoria1",new HashSet<>(),new Date());
+        Categoria categoria1 = new Categoria(1,"categoria5",new HashSet<>(),new Date(),0);
         categoriaService.save(categoria1);
 
-        Categoria categoria2 = new Categoria(2,"categoria2",new HashSet<>(),new Date());
+        Categoria categoria2 = new Categoria(2,"categoria6",new HashSet<>(),new Date(),0);
         categoriaService.save(categoria2);
     }
 }

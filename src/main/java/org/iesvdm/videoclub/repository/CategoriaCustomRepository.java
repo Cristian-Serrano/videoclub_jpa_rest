@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CategoriaCustomRepository {
-    public List<Categoria> queryCustomCategoría(Optional<String> buscarOptional, Optional<String> ordenarOptional);
+    public List<Categoria> queryCustomCategoria(Optional<String> buscarOptional, Optional<String> ordenarOptional);
 }

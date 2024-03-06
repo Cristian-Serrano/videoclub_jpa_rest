@@ -15,20 +15,20 @@ public class CategoriaCustomRepositoryJPQLImpl implements CategoriaCustomReposit
     private EntityManager em;
 
     @Override
-    public List<Categoria> queryCustomCategoría(Optional<String> buscarOptional, Optional<String> ordenarOptional){
-        String query = "SELECT * FROM categoria";
+    public List<Categoria> queryCustomCategoria(Optional<String> buscarOptional, Optional<String> ordenarOptional){
+        String query = "SELECT C FROM Categoria C";
         if(buscarOptional.isPresent()){
-            query += "WHERE nombre like :nombre";
+            query += "WHERE C.nombre like :nombre";
         }
-        if(ordenarOptional.isPresent() && buscarOptional.isPresent()){
+        if(ordenarOptional.isPresent()/* && buscarOptional.isPresent()*/){
             if ("asc".equalsIgnoreCase(buscarOptional.get())){
-                query += "ORDER BY nombre ASC";
+                query += "ORDER BY C.nombre ASC";
             } else if ("desc".equalsIgnoreCase(buscarOptional.get())) {
-                query += "ORDER BY nombre DESC";
+                query += "ORDER BY C.nombre DESC";
             }
         }
 
-        Query queryQuery = em.createNativeQuery(query, Categoria.class);
+        Query queryQuery = em.createQuery(query, Categoria.class);
         if (buscarOptional.isPresent()) {
             queryQuery.setParameter("nombre", "%"+buscarOptional.get()+"%");
         }

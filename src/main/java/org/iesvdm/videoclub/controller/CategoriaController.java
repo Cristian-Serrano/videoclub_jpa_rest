@@ -23,7 +23,7 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping({"","/"})
+    @GetMapping(value={"","/"},params ={"!buscar","!ordenar"})
     public List<Categoria> all() {
         log.info("Accediendo a todas las categorias");
         return this.categoriaService.all();
