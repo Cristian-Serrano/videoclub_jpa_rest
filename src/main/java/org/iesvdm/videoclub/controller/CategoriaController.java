@@ -16,7 +16,8 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/categorias")
 public class CategoriaController {
-    
+
+
     private final CategoriaService categoriaService;
 
     public CategoriaController(CategoriaService categoriaService) {
