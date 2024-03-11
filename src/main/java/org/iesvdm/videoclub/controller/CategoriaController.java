@@ -17,8 +17,8 @@ import java.util.Optional;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-
     private final CategoriaService categoriaService;
+
 
     public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
